@@ -7,14 +7,14 @@ async function handler(req, res) {
     const data = req.body;
 
     const client = await MongoClient.connect(
-      "mongodb+srv://javascriptmastery:oOUxsovcAXvJRzmU@cluster0.mfetfx7.mongodb.net/meetups?retryWrites=true&w=majority"
+      "mongodb+srv://javascriptmastery:UggsyCffYIsBfWK6@cluster0.mfetfx7.mongodb.net/meetups?retryWrites=true&w=majority"
     );
 
     const db = client.db();
 
     const meetupsCollection = db.collection("meetups");
 
-    const result = await meetupsCollection.insertOne({ data });
+    const result = await meetupsCollection.insertOne(data);
 
     console.log(result);
 
