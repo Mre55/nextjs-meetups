@@ -1,9 +1,13 @@
-import React from "react";
-import NewMeetupForm from "../../components/meetups/NewMeetupForm";
+// our-domain.com/new-meetup
+import { useRouter } from 'next/router';
 
-const NewMeetupPage = () => {
+import NewMeetupForm from '../../components/meetups/NewMeetupForm';
+
+function NewMeetupPage() {
+  const router = useRouter();
+
   async function addMeetupHandler(enteredMeetupData) {
-    const response = await fetch("/api/new-meetup", {
+    const response = await fetch('/api/new-meetup', {
       method: 'POST',
       body: JSON.stringify(enteredMeetupData),
       headers: {
@@ -11,12 +15,14 @@ const NewMeetupPage = () => {
       }
     });
 
-    const data = response.json()
+    const data = await response.json();
 
-    console.log(data)
+    console.log(data);
+
+    router.push('/');
   }
 
-  return <NewMeetupForm onAddMeetup={addMeetupHandler} />;
-};
+  return <NewMeetupForm onAddMeetup={addMeetupHandler} />
+}
 
 export default NewMeetupPage;
